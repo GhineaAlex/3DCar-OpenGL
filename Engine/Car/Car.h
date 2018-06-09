@@ -21,7 +21,7 @@ class Car : public Object3D
 
 private:
 	double velocity;
-	float step; // Position update step
+	float step; 
 
 public:
 	Car();

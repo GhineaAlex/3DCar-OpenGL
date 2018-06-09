@@ -30,8 +30,7 @@ public:
 
 	void virtual Draw();
 
-	void Select();
-	void Deselect();
+	
 	void SetPosition(Vector3D *);
 	void SetRotation(Vector3D *);
 	void Steer(float degrees);

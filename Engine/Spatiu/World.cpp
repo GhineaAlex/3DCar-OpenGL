@@ -1,5 +1,4 @@
-// "World" class handles skybox, level and groundfloor rendering
-
+//skybox, podea
 #include "World.h"
 
 World::World() {
@@ -22,7 +21,7 @@ World::World() {
 	initSkyboxList();
 }
 
-// Let's free up memory
+//dezalocare
 World::~World() {
 	delete map;
 	delete ground;
@@ -57,7 +56,7 @@ void World::draw() {
 	glPopMatrix();
 
 }
-// Binds textures to our skybox cube
+// textura pe skybox
 void World::initSkyboxList() {
 	float OFFSET = 1 / 512.0; // Used for seamless edges
 
@@ -99,10 +98,10 @@ void World::initSkyboxList() {
 	glBindTexture(GL_TEXTURE_2D, skybox[4]);
 	glBegin(GL_QUADS);
 	//glNormal3d(0.0, 0.0, 1.0); glTexCoord2d(0.0 + OFFSET, 0.0 + OFFSET); glVertex3d(-1.0, -1.0, 1.0);
-	glNormal3d(0.0, 0.0, 1.0); glTexCoord2d(0.0 + OFFSET, 0.0 + OFFSET); glVertex3d(-1.0, -1.0, 1.0);
-	glNormal3d(0.0, 0.0, 1.0); glTexCoord2d(1.0 - OFFSET, 0.0 + OFFSET); glVertex3d(1.0, -1.0, 1.0);
-	glNormal3d(0.0, 0.0, 1.0); glTexCoord2d(1.0 - OFFSET, 1.0 - OFFSET); glVertex3d(1.0, -1.0, -1.0);
-	glNormal3d(0.0, 0.0, 1.0); glTexCoord2d(0.0 + OFFSET, 1.0 - OFFSET); glVertex3d(-1.0, -1.0, -1.0);
+	glNormal3d(0.0, 0.0, 1.0); glTexCoord2d(0.0 + OFFSET, 0.0 + OFFSET); glVertex3d(-1.0, 0.0, 1.0);
+	glNormal3d(0.0, 0.0, 1.0); glTexCoord2d(1.0 - OFFSET, 0.0 + OFFSET); glVertex3d(1.0, 0.0, 1.0);
+	glNormal3d(0.0, 0.0, 1.0); glTexCoord2d(1.0 - OFFSET, 1.0 - OFFSET); glVertex3d(1.0, 0.0, -1.0);
+	glNormal3d(0.0, 0.0, 1.0); glTexCoord2d(0.0 + OFFSET, 1.0 - OFFSET); glVertex3d(-1.0, 0.0, -1.0);
 	glEnd();
 
 	glBindTexture(GL_TEXTURE_2D, skybox[5]);

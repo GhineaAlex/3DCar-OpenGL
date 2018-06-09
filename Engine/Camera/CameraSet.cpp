@@ -1,9 +1,7 @@
-// "CameraSet" handles 4 different "Camera" objects
-
 #include "Camera.h"
 #include "CameraSet.h"
 CameraSet::CameraSet(Car *bindedCar) {
-	car = bindedCar; // Camera system follows a car
+	car = bindedCar; // camera urmareste masina
 
 					
 	cameras[NORMAL] = new Camera();

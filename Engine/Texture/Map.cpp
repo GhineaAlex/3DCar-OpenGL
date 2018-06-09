@@ -1,5 +1,3 @@
-// "Map" class loads level data from a file
-// and renders it on the screen.
 #define _CRT_SECURE_NO_DEPRECATE
 #include "Map.h"
 
@@ -34,14 +32,6 @@ void Map::Draw() {
 
 }
 
-float distance(float x, float y, float cx, float cy) {
-	return sqrt(pow(cx - x, 2) + pow(cy - y, 2));
-}
-
-// Overly simplistic (and expensive) collision detection
-// First checks if it's close enough to an object and then
-// it checks if any of the car parts (front, center, back)
-// collides with the object.
 bool Map::checkCollision(Car *car) {
 
 	return false;
@@ -52,17 +42,108 @@ void Map::readLevelData() {
 
 }
 
-// Generate level display list
 void Map::buildLevel() {
 	level = glGenLists(1);
 	glNewList(level, GL_COMPILE);
+	
 
-	// Represent level object as solid torus (like a tire)
+	glPushMatrix();
+	glTranslatef(-17, 0.1, 3);
+	glRotatef(90, 1, 0, 0);
+	glutSolidTorus(0.15, 0.35, 10, 10);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-15, 0.1, 3);
+	glRotatef(90, 1, 0, 0);
+	glutSolidTorus(0.15, 0.35, 10, 10);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-13, 0.1, 3);
+	glRotatef(90, 1, 0, 0);
+	glutSolidTorus(0.15, 0.35, 10, 10);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-11, 0.1, 3);
+	glRotatef(90, 1, 0, 0);
+	glutSolidTorus(0.15, 0.35, 10, 10);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(-9, 0.1, 3);
+	glRotatef(90, 1, 0, 0);
+	glutSolidTorus(0.15, 0.35, 10, 10);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-7, 0.1, 3);
+	glRotatef(90, 1, 0, 0);
+	glutSolidTorus(0.15, 0.35, 10, 10);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-5, 0.1, 3);
+	glRotatef(90, 1, 0, 0);
+	glutSolidTorus(0.15, 0.35, 10, 10);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-2, 0.1, 3);
+	glRotatef(90, 1, 0, 0);
+	glutSolidTorus(0.15, 0.35, 10, 10);
+	glPopMatrix();
+		
 		glPushMatrix();
-		//glTranslatef(levelData[i][0], 0.1, levelData[i][1]);
+		glTranslatef(0, 0.1, 3);
 		glRotatef(90, 1, 0, 0);
 		glutSolidTorus(0.15, 0.35, 10, 10);
 		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(2, 0.1, 3);
+		glRotatef(90, 1, 0, 0);
+		glutSolidTorus(0.15, 0.35, 10, 10);
+		glPopMatrix();
+		glPushMatrix();
+		glTranslatef(5, 0.1, 3);
+		glRotatef(90, 1, 0, 0);
+		glutSolidTorus(0.15, 0.35, 10, 10);
+		glPopMatrix();
+		glPushMatrix();
+		glTranslatef(7, 0.1, 3);
+		glRotatef(90, 1, 0, 0);
+		glutSolidTorus(0.15, 0.35, 10, 10);
+		glPopMatrix();
+		glPushMatrix();
+		glTranslatef(9, 0.1, 3);
+		glRotatef(90, 1, 0, 0);
+		glutSolidTorus(0.15, 0.35, 10, 10);
+		glPopMatrix();
+		glPushMatrix();
+		glTranslatef(11, 0.1, 3);
+		glRotatef(90, 1, 0, 0);
+		glutSolidTorus(0.15, 0.35, 10, 10);
+		glPopMatrix();
+		glPushMatrix();
+		glTranslatef(13, 0.1, 3);
+		glRotatef(90, 1, 0, 0);
+		glutSolidTorus(0.15, 0.35, 10, 10);
+		glPopMatrix();
+		glPushMatrix();
+		glTranslatef(15, 0.1, 3);
+		glRotatef(90, 1, 0, 0);
+		glutSolidTorus(0.15, 0.35, 10, 10);
+		glPopMatrix();
+		glPushMatrix();
+		glTranslatef(17, 0.1, 3);
+		glRotatef(90, 1, 0, 0);
+		glutSolidTorus(0.15, 0.35, 10, 10);
+		glPopMatrix();
+		glPushMatrix();
+		glTranslatef(19, 0.1, 3);
+		glRotatef(90, 1, 0, 0);
+		glutSolidTorus(0.15, 0.35, 10, 10);
+		glPopMatrix();
+
+
 	
 	glEndList();
+	
+	glEvalMesh2(GL_FILL, 0, 20, 0, 20);
 }

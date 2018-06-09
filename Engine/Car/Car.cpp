@@ -1,13 +1,12 @@
 #include "Car.h"
 
-// Headlights glLight settings
+// far
 float leftHeadlightPos[] = { -2, 0.1, -5, 1.0 };
 float rightHeadlightPos[] = { 2, 0.1, -5, 1.0 };
 float headlightAmbient[] = { 0, 0, 0, 0 };
 float headlightDiffuse[] = { 3.5, 3.5, 3.5, 1.0 };
 float headlightSpecular[] = { 1, 1, 1, 1.0 };
-float headlightDirection[] = { 0, -1.05, -1 }; // Slightly downwards
-
+float headlightDirection[] = { 0, -1.05, -1 }; // Usor incliant
 
 Car::Car() {
 	SetColor(new Vector3D(0.3, 0.3, 0.5));
@@ -38,18 +37,18 @@ void Car::Draw(int showCar) {
 
 	if (showCar != 0) {
 		glCallList(carList + 3);
-		// Headlights
+		// far
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, (Vector4D(4, 4, 4, 0.5)).Array());
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, (Vector4D(3, 3, 3, 0.5)).Array());
 		glCallList(carList + 4);
-		// Windows
+		// geam
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, (Vector4D(0.6, 0.6, 1, 0.5)).Array());
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, (Vector4D(0.1, 0.1, 0.1, 0.5)).Array());
 		glCallList(carList + 1);
-		// Wheels
+		// roti
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, (Vector4D(0.1, 0.1, 0.1, 1)).Array());
 		glCallList(carList + 2);
-		// Body
+		// struct
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, (Vector4D(0.1, 0.1, 0.1, 1)).Array());
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, (Vector4D(0.5, 0.5, 0.5, 1)).Array());
 		glCallList(carList);
@@ -66,71 +65,65 @@ void Car::Draw(int showCar) {
 	glPopMatrix();
 }
 
-// Update car speed and position
+// car viteza si poz
 void Car::update(int steeringInput, int acc, int brk) {
 	float step = 0;
 
 	
 
-	// No movement
+	// fara miscare
 	if (!acc && !brk && velocity < 3 && velocity > -3)
 		velocity = 0;
 
 	if (velocity < 0)
-		steeringInput *= -1; // Going into reverse
+		steeringInput *= -1; //spate
 
-							 // Steer only if moving
+							 
 	if (velocity != 0) {
 		if (steeringInput == -1) {
-			rotation.y += STEERANGLE; // Steering LEFT
+			rotation.y += STEERANGLE; // stg
 		}
 		else if (steeringInput == 1) {
-			rotation.y -= STEERANGLE; // Stering RIGHT
+			rotation.y -= STEERANGLE; // dr
 		}
 		else {
-			// NO steering - do nothing
+			//fara
 		}
 	}
 
-	if (acc) // Accelerating
+	if (acc) // acc
 	{
 		velocity += FORWARDACC;
-		// Limit forward speed
+		// limit viteza
 		if (velocity > MAXVEL)
 			velocity = MAXVEL;
 	}
 	if (brk)
 	{
-		// Braking
+		//oprit
 		if (velocity > 0) {
 			velocity -= BRKPOWER;
-			// Change stoplights color for braking
+			
 			
 		}
-		// Reverse
 		else {
 			velocity -= REVERSEACC;
-			// Change stoplights color for reverse
 			
 		}
-		// Limit reverse speed
+		//limit viteza
 		if (velocity < MAXNVEL)
 			velocity = MAXNVEL;
 
 	}
-
-	// Get direction vector based on rotation
+	//directia vectorului bazat pe rotatia data de la tastatura
 	direction.x = sin(rotation.y * PI / 180);
 	direction.z = cos(rotation.y * PI / 180);
 
 	step = -velocity / 100;
-	// Move it
+	// miscare
 	SetPosition(&(GetPosition() + Vector3D(step* direction.x, 0, step*direction.z)));
 
-	// Steer it
-	//rotation.y += steer;
-
-	// Next speed will be lower
+	
 	velocity *= DRAG;
 }
 void Car::hasCollided() {
@@ -139,7 +132,7 @@ void Car::hasCollided() {
 	translation.y = lastSafePos.y;
 }
 
-// Put car in a slow speed state
+// mai incet
 void Car::slow() {
 	velocity *= 0.5;
 }
